@@ -41,5 +41,16 @@ For application:
 $ mvn spring-boot:run
 ```
 
+## Run tests for coverage
+Code coverage is a software metric used to measure how many lines of our code are executed during automated tests.
+
+_JaCoCo_ is a code coverage report generator for Java projects already configured in `pom.xml`.
+
+You can use `jacoco:report` goal in order to generate readable code coverage reports in several formats, like HTML, CSV, and XML.
+```bash
+$ mvn jacoco:report
+```
+Now you can take a look at the `target/site/jacoco/index.html` page to see what the generated report looks like.
+
 ## Credits
 Thanks to the guys at XPUG Bergamo for their precious feedback on these project ideas.
