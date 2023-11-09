@@ -2,6 +2,7 @@ package it.giannibombelli.iad2023.xpcard.domain;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.Date;
 import java.util.UUID;
 
 public class XpCardTransaction {
@@ -11,11 +12,13 @@ public class XpCardTransaction {
     private final UUID cardId;
     private final int points;
     private final String reason;
+    private final Date date;
 
-    public XpCardTransaction(UUID cardId, int points, String reason) {
+    public XpCardTransaction(UUID cardId, int points, String reason, Date date) {
         this.cardId = cardId;
         this.points = points;
         this.reason = reason;
+        this.date = date;
     }
 
     public int getPoints() {
@@ -24,5 +27,9 @@ public class XpCardTransaction {
 
     public String getReason() {
         return reason;
+    }
+
+    public Date getDate() {
+        return date;
     }
 }

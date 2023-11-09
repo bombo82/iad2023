@@ -29,7 +29,7 @@ class XpCardAcceptanceTest {
     void emit() throws Exception {
         mvc.perform(post("/")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"initialPoints\": 500}"))
+                        .content("{\"initialPoints\": 500, \"note\": \"emit acceptance test\"}"))
                 .andExpect(status().isOk());
     }
 
@@ -68,7 +68,7 @@ class XpCardAcceptanceTest {
     private UUID createCardAndGetCardId() throws Exception {
         final MvcResult mvcResult = mvc.perform(post("/")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"initialPoints\": 500}"))
+                        .content("{\"initialPoints\": 500, \"note\": \"acceptance test\"}"))
                 .andReturn();
         ObjectMapper mapper = new ObjectMapper();
         final XpCardFullResponse response = mapper.readValue(mvcResult.getResponse().getContentAsString(), XpCardFullResponse.class);

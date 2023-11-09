@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,20 +31,22 @@ class XpCardServiceTest {
 
     @Test
     void emit() {
-        final XpCard xpCard = service.emit(UUID.randomUUID(), 500);
+        final XpCard xpCard = service.emit(UUID.randomUUID(), 500, "emit service test");
 
         assertEquals(500, xpCard.getCurrentPoints());
+        assertEquals("emit service test", xpCard.getNote());
     }
 
     @Test
     void get() {
         final UUID cardId = UUID.randomUUID();
-        final XpCard expectedXpCard = new XpCard(cardId, 500);
+        final XpCard expectedXpCard = new XpCard(cardId, 500, "get service test");
         when(xpCardRepository.getByCardId(cardId)).thenReturn(expectedXpCard);
 
         final XpCard xpCard = service.get(cardId);
 
         assertEquals(expectedXpCard, xpCard);
+        assertEquals("get service test", xpCard.getNote());
     }
 
     @Test
@@ -51,8 +54,8 @@ class XpCardServiceTest {
         final UUID cardId1 = UUID.randomUUID();
         final UUID cardId2 = UUID.randomUUID();
         final List<XpCard> expectedXpCardList = List.of(
-                new XpCard(cardId1, 500),
-                new XpCard(cardId2, 500)
+                new XpCard(cardId1, 500, "list service test [1]"),
+                new XpCard(cardId2, 500, "list service test [2]")
         );
         when(xpCardRepository.findAll()).thenReturn(expectedXpCardList);
 
@@ -64,7 +67,7 @@ class XpCardServiceTest {
     @Test
     void gainPoints() {
         final UUID cardId = UUID.randomUUID();
-        when(xpCardRepository.getByCardId(cardId)).thenReturn(new XpCard(cardId, 0));
+        when(xpCardRepository.getByCardId(cardId)).thenReturn(new XpCard(cardId, 0, "gain service test"));
 
         service.gainPoints(cardId, 500, "Gains 500 XP points");
 
@@ -74,7 +77,7 @@ class XpCardServiceTest {
     @Test
     void redeemPoints_when_gained_points_is_enough() {
         final UUID cardId = UUID.randomUUID();
-        when(xpCardRepository.getByCardId(cardId)).thenReturn(new XpCard(cardId, 500));
+        when(xpCardRepository.getByCardId(cardId)).thenReturn(new XpCard(cardId, 500, "redeem service test"));
 
         service.redeemPoints(cardId, 400, "Spent 400 XP points to redeem eXtreme Programming explained");
 
@@ -84,7 +87,7 @@ class XpCardServiceTest {
     @Test
     void redeemPoints_when_gained_points_is_NOT_enough() {
         final UUID cardId = UUID.randomUUID();
-        when(xpCardRepository.getByCardId(cardId)).thenReturn(new XpCard(cardId, 100));
+        when(xpCardRepository.getByCardId(cardId)).thenReturn(new XpCard(cardId, 100, "redeem service test"));
 
         service.redeemPoints(cardId, 400, "Spent 400 XP points to redeem eXtreme Programming explained");
 
@@ -95,7 +98,7 @@ class XpCardServiceTest {
     void getTransactions() {
         final UUID cardId = UUID.randomUUID();
         final List<XpCardTransaction> expectedXpCardTransactionList = List.of(
-                new XpCardTransaction(cardId, 500, "Gains 500 XP points")
+                new XpCardTransaction(cardId, 500, "Gains 500 XP points", new Date())
         );
         when(xpCardTransactionRepository.getAllByCardId(cardId)).thenReturn(expectedXpCardTransactionList);
 

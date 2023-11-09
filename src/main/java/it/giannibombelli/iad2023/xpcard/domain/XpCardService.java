@@ -4,6 +4,7 @@ import it.giannibombelli.iad2023.xpcard.repository.XpCardMongoRepository;
 import it.giannibombelli.iad2023.xpcard.repository.XpCardTransactionMongoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,9 +26,14 @@ public class XpCardService {
         return currentPoints - points;
     }
 
-    public XpCard emit(UUID cardId, int initialPoints) {
-        final XpCard xpCard = new XpCard(cardId, initialPoints);
+    public XpCard emit(UUID cardId, int initialPoints, String note) {
+        final XpCard xpCard = new XpCard(cardId, initialPoints, note);
         xpCardRepository.save(xpCard);
+
+        final String reason = "Emit XP Card with " + initialPoints + " points.";
+        final XpCardTransaction transaction = new XpCardTransaction(cardId, initialPoints, reason, new Date());
+        xpCardTransactionRepository.save(transaction);
+
         return xpCard;
     }
 
@@ -45,7 +51,7 @@ public class XpCardService {
         xpCard.setCurrentPoints(sumPointsToCurrent(points, currentPoints));
         xpCardRepository.save(xpCard);
 
-        final XpCardTransaction transaction = new XpCardTransaction(cardId, points, reason);
+        final XpCardTransaction transaction = new XpCardTransaction(cardId, points, reason, new Date());
         xpCardTransactionRepository.save(transaction);
     }
 
@@ -57,7 +63,7 @@ public class XpCardService {
         }
         xpCard.setCurrentPoints(subtractPointsFromCurrent(points, currentPoints));
 
-        final XpCardTransaction transaction = new XpCardTransaction(cardId, -points, reason);
+        final XpCardTransaction transaction = new XpCardTransaction(cardId, -points, reason, new Date());
         xpCardTransactionRepository.save(transaction);
     }
 

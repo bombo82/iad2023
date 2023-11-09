@@ -9,12 +9,13 @@ public class XpCard {
     private String internalId;
 
     private final UUID cardId;
-
     private int currentPoints;
+    private String note;
 
-    public XpCard(UUID cardId, int currentPoints) {
+    public XpCard(UUID cardId, int currentPoints, String note) {
         this.cardId = cardId;
         this.currentPoints = currentPoints;
+        this.note = note;
     }
 
     public UUID getCardId() {
@@ -27,5 +28,9 @@ public class XpCard {
 
     public void setCurrentPoints(int currentPoints) {
         this.currentPoints = currentPoints;
+    }
+
+    public String getNote() {
+        return note;
     }
 }
