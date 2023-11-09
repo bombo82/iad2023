@@ -1,9 +1,9 @@
 package it.giannibombelli.iad2023.xpcard.controller;
 
-public class EmitXpCard {
+public class XpCardRequest {
     private int initialPoints;
 
-    public EmitXpCard() {
+    public XpCardRequest() {
         super();
     }
 

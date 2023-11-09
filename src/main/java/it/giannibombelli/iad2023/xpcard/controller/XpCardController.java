@@ -18,8 +18,8 @@ public class XpCardController {
     }
 
     @PostMapping
-    public XpCardFullResponse emit(@RequestBody EmitXpCard emitXpCard) {
-        final XpCard xpCard = service.emit(UUID.randomUUID(), emitXpCard.getInitialPoints());
+    public XpCardFullResponse emit(@RequestBody XpCardRequest emitXpCardRequest) {
+        final XpCard xpCard = service.emit(UUID.randomUUID(), emitXpCardRequest.getInitialPoints(), emitXpCardRequest.getNote());
         return new XpCardFullResponse(xpCard);
     }
 
@@ -36,8 +36,8 @@ public class XpCardController {
     }
 
     @PostMapping("/{cardId}/addPoints")
-    public void gainPoints(@PathVariable UUID cardId, @RequestBody PointsRequest addPointsRequest) {
-        service.gainPoints(cardId, addPointsRequest.getPoints(), addPointsRequest.getReason());
+    public void gainPoints(@PathVariable UUID cardId, @RequestBody PointsRequest gainPointsRequest) {
+        service.gainPoints(cardId, gainPointsRequest.getPoints(), gainPointsRequest.getReason());
     }
 
     @PostMapping("/{cardId}/redeemPoints")
