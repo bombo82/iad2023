@@ -61,7 +61,7 @@ class XpCardAcceptanceTest {
 
         mvc.perform(post("/" + cardId + "/redeemPoints")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"points\": 500, \"reason\": \"Spent 400 XP points to redeem eXtreme Programming explained\"}"))
+                        .content("{\"points\": 400, \"reason\": \"Spent 400 XP points to redeem eXtreme Programming explained\"}"))
                 .andExpect(status().isOk());
     }
 
