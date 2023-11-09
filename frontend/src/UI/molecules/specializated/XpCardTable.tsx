@@ -10,8 +10,8 @@ type XpCardTableProps = {
 export default function XpCardTable(props: Readonly<XpCardTableProps>) {
   return (
     <BaseTable colHeaders={["Card ID", "Note"]}>
-      {props.xpCards.map((xpCard, index) => (
-        <tr key={index} onClick={() => {
+      {props.xpCards.map(xpCard => (
+        <tr key={xpCard.cardId} onClick={() => {
           props.onXpCardSelect(xpCard.cardId);
         }}>
           <td>{xpCard.cardId}</td>

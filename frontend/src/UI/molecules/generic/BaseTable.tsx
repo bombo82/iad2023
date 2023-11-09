@@ -10,7 +10,7 @@ export default function BaseTable(props: Readonly<BaseTableProps>) {
   return <Table striped bordered hover>
     <thead>
     <tr>
-      {props.colHeaders.map((colHeader, index) => <th key={index}>{colHeader}</th>)}
+      {props.colHeaders.map(colHeader => <th key={colHeader}>{colHeader}</th>)}
     </tr>
     </thead>
     <tbody>

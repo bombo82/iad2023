@@ -9,9 +9,9 @@ type XpCardDetailsProps = {
 export default function XpCardDetailsTable(props: Readonly<XpCardDetailsProps>) {
 
   return (
-    <BaseTable colHeaders={["Points", "Reason", "Date"]}>
-      {props.xpCardTransactions.map((xpCardTransaction, index) => (
-        <tr key={index} onClick={() => {
+    <BaseTable colHeaders={["XP Points", "Reason", "Date"]}>
+      {props.xpCardTransactions.map(xpCardTransaction => (
+        <tr key={xpCardTransaction.date} onClick={() => {
         }}>
           <td>{xpCardTransaction.points}</td>
           <td>{xpCardTransaction.reason}</td>
