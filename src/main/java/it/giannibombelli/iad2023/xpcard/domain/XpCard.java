@@ -8,7 +8,7 @@ public class XpCard {
     @Id
     private String internalId;
 
-    private final UUID cardId;
+    private UUID cardId;
     private int currentPoints;
     private String note;
 

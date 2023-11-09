@@ -9,10 +9,10 @@ public class XpCardTransaction {
     @Id
     private String internalId;
 
-    private final UUID cardId;
-    private final int points;
-    private final String reason;
-    private final Date date;
+    private UUID cardId;
+    private int points;
+    private String reason;
+    private Date date;
 
     public XpCardTransaction(UUID cardId, int points, String reason, Date date) {
         this.cardId = cardId;
