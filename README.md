@@ -7,6 +7,29 @@
 ## Project Description
 `XP Card Application` is a web application with a back-end in Spring Boot written in Java with a front-end written in React. Its goal is to keep track of the balance and movements of XP points on a virtual card, known as an `XP card`.
 
+People earn XP points respecting the practices:
+
+* The Planning Game
+* Small Releases
+* Metaphor
+* Simple Design
+* Testing
+* Refactoring
+* Pair Programming
+* Collective Ownership
+* Continuous Integration
+* 40-hour week
+* On-site Customer
+* Coding Standard
+
+People loose XP points violating the practices:
+* Working overtime
+* Over engineering
+* Working alone the most of time
+* Working on branch lasting month and rarely integrated in main
+* etc. etc.
+
+
 ## How to Install and Run the Project
 
 ### Install Requirements
