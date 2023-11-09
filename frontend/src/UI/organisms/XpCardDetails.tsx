@@ -20,7 +20,7 @@ export default function XpCardDetails(props: Readonly<XpCardDetailsProps>) {
 
   return (
     <SectionCard title="XP Card Details">
-      <Stack gap={2}>
+      <Stack gap={4}>
         <XpCardTransactionForm enabled={!props.selectedXpCard}
                                onGainPoints={() => {}}
                                onRedeemPoints={() => {}}/>

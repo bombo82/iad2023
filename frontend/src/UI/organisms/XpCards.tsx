@@ -18,9 +18,9 @@ export default function XpCards(props: Readonly<XpCardsProps>) {
 
   return (
     <SectionCard title="List of XP cards">
-      <Stack direction={"horizontal"} gap={3}>
-        <XpCardTable xpCards={xpCardList} onXpCardSelect={props.onXpCardSelect}></XpCardTable>
+      <Stack gap={4}>
         <EmitXpCardForm onEmitNewXpCard={() => alert("Emit New XP Card")}></EmitXpCardForm>
+        <XpCardTable xpCards={xpCardList} onXpCardSelect={props.onXpCardSelect}></XpCardTable>
       </Stack>
     </SectionCard>
   );

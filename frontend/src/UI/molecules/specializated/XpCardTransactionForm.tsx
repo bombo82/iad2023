@@ -1,5 +1,4 @@
-import Stack from "react-bootstrap/Stack";
-import {Button, Form, FormGroup} from "react-bootstrap";
+import {Button, Col, Form, FormGroup, Row} from "react-bootstrap";
 import {useState} from "react";
 
 type XpCardTransactionFormProps = {
@@ -30,23 +29,25 @@ export function XpCardTransactionForm(props: Readonly<XpCardTransactionFormProps
           onReset={(event) => onButtonClick(event, "redeem")}
     >
       <fieldset disabled={props.enabled}>
-        <Stack direction={"horizontal"} gap={4}>
-          <FormGroup>
+        <Row>
+          <FormGroup as={Col} md={"2"}>
             <Form.Label>XP Points</Form.Label>
             <Form.Control type="number" min={1} required/>
             <Form.Control.Feedback type="invalid">
               This field is mandatory.
             </Form.Control.Feedback></FormGroup>
-          <FormGroup>
+          <FormGroup as={Col} md={"8"}>
             <Form.Label>Reason</Form.Label>
             <Form.Control type="text" required/>
             <Form.Control.Feedback type="invalid">
               This field is mandatory.
             </Form.Control.Feedback>
           </FormGroup>
-          <Button type={"submit"}>Gain points</Button>
-          <Button type={"reset"}>Redeem points</Button>
-        </Stack>
+          <Col md={"2"} className="d-grid gap-2">
+            <Button type={"submit"} variant={"success"}>Gain points</Button>
+            <Button type={"reset"} variant={"danger"}>Redeem points</Button>
+          </Col>
+        </Row>
       </fieldset>
     </Form>
   );

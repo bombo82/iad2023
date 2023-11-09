@@ -1,5 +1,4 @@
-import Stack from "react-bootstrap/Stack";
-import {Button, Form, FormGroup} from "react-bootstrap";
+import {Button, Col, Form, FormGroup, Row} from "react-bootstrap";
 import {useState} from "react";
 
 type EmitXpCardFormProps = {
@@ -24,22 +23,24 @@ export function EmitXpCardForm(props: Readonly<EmitXpCardFormProps>) {
 
   return (
     <Form noValidate validated={validated} onSubmit={onButtonClick}>
-      <Stack gap={4}>
-        <FormGroup>
+      <Row>
+        <FormGroup as={Col} md={"2"}>
           <Form.Label>Initial XP Points</Form.Label>
           <Form.Control type="number" min={1} required/>
           <Form.Control.Feedback type="invalid">
             This field is mandatory an must be greater than zero.
           </Form.Control.Feedback></FormGroup>
-        <FormGroup>
+        <FormGroup as={Col} md={"8"}>
           <Form.Label>Note</Form.Label>
           <Form.Control type="text" required/>
           <Form.Control.Feedback type="invalid">
             This field is mandatory.
           </Form.Control.Feedback>
         </FormGroup>
-        <Button type={"submit"}>New XP Card</Button>
-      </Stack>
+        <Col md={"2"} className="d-grid gap-2">
+          <Button type={"submit"}>New XP Card</Button>
+        </Col>
+      </Row>
     </Form>
   );
 }
