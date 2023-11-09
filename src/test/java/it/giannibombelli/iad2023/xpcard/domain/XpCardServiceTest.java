@@ -54,8 +54,8 @@ class XpCardServiceTest {
         final UUID cardId1 = UUID.randomUUID();
         final UUID cardId2 = UUID.randomUUID();
         final List<XpCard> expectedXpCardList = List.of(
-                new XpCard(cardId1, 500, "list service test [1]"),
-                new XpCard(cardId2, 500, "list service test [2]")
+            new XpCard(cardId1, 500, "list service test [1]"),
+            new XpCard(cardId2, 500, "list service test [2]")
         );
         when(xpCardRepository.findAll()).thenReturn(expectedXpCardList);
 
@@ -98,7 +98,7 @@ class XpCardServiceTest {
     void getTransactions() {
         final UUID cardId = UUID.randomUUID();
         final List<XpCardTransaction> expectedXpCardTransactionList = List.of(
-                new XpCardTransaction(cardId, 500, "Gains 500 XP points", new Date())
+            new XpCardTransaction(cardId, 500, "Gains 500 XP points", new Date())
         );
         when(xpCardTransactionRepository.getAllByCardId(cardId)).thenReturn(expectedXpCardTransactionList);
 
