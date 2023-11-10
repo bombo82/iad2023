@@ -3,7 +3,7 @@ import SectionCard from "../molecules/generic/SectionCard";
 import XpCardTable from "../molecules/specializated/XpCardTable";
 import {EmitXpCardForm} from "../molecules/specializated/EmitXpCardForm";
 import Stack from "react-bootstrap/Stack";
-import {fetchXpCardList} from "../../services/XpCardsService";
+import {emitXpCard, fetchXpCardList} from "../../services/XpCardsService";
 import {XpCardSummaryType} from "../../types/XpCardSummaryType";
 
 type XpCardsProps = {
@@ -20,8 +20,9 @@ export default function XpCards(props: Readonly<XpCardsProps>) {
   return (
     <SectionCard title="List of XP cards">
       <Stack gap={4}>
-        <EmitXpCardForm onEmitNewXpCard={() => alert("Emit New XP Card")}></EmitXpCardForm>
-        <XpCardTable xpCards={xpCardList} onXpCardSelect={props.onXpCardSelect}></XpCardTable>
+        <EmitXpCardForm
+          onEmitNewXpCard={(data) => emitXpCard(data, () => fetchXpCardList((response) => setXpCardList(response)))}/>
+        <XpCardTable xpCards={xpCardList} onXpCardSelect={props.onXpCardSelect}/>
       </Stack>
     </SectionCard>
   );

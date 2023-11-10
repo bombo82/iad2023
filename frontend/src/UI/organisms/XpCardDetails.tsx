@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import SectionCard from "../molecules/generic/SectionCard";
 import XpCardDetailsTable from "../molecules/specializated/XpCardDetailsTable";
-import {fetchXpCardDetails} from "../../services/XpCardDetailsService";
+import {fetchXpCardDetails, gainPoints, redeemPoints} from "../../services/XpCardDetailsService";
 import Stack from "react-bootstrap/Stack";
 import {XpCardTransactionForm} from "../molecules/specializated/XpCardTransactionForm";
 import {XpCardDetailsType} from "../../types/XpCardDetailsType";
@@ -23,8 +23,8 @@ export default function XpCardDetails(props: Readonly<XpCardDetailsProps>) {
     <SectionCard title="XP Card Details">
       <Stack gap={4}>
         <XpCardTransactionForm enabled={!props.selectedXpCard}
-                               onGainPoints={() => {}}
-                               onRedeemPoints={() => {}}/>
+                               onGainPoints={(data) => gainPoints(props.selectedXpCard!, data, () => fetchXpCardDetails(props.selectedXpCard!, (response) => setXpCardDetails(response)))}
+                               onRedeemPoints={(data) => redeemPoints(props.selectedXpCard!, data, () => fetchXpCardDetails(props.selectedXpCard!, (response) => setXpCardDetails(response)))}/>
         <Stack direction={"horizontal"} gap={3}>
           <XpCardDetailsTable xpCardTransactions={xpCardDetails?.xpCardTransactions ?? []}></XpCardDetailsTable>
           <div>

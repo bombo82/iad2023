@@ -1,44 +1,56 @@
 import {Button, Col, Form, FormGroup, Row} from "react-bootstrap";
-import {useState} from "react";
+import {useRef, useState} from "react";
+import {EmitXpCardType} from "../../../types/EmitXpCardType";
 
 type EmitXpCardFormProps = {
-  readonly onEmitNewXpCard: () => void
+  readonly onEmitNewXpCard: (data: EmitXpCardType) => void
 }
 
 export function EmitXpCardForm(props: Readonly<EmitXpCardFormProps>) {
-  const [validated, setValidated] = useState(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const [isFormValidated, setIsFormValidated] = useState(false);
+  const [initialPoints, setInitialPoints] = useState<number>();
+  const [note, setNote] = useState<string>();
 
-  const onButtonClick = (event: any) => {
-    const form = event.currentTarget;
-    console.log(form)
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-      setValidated(true);
+  function handleClick(action: (data: EmitXpCardType) => void) {
+    const form = formRef.current;
+    if (form?.checkValidity()) {
+      action({initialPoints: initialPoints!, note: note!});
+      setIsFormValidated(false)
+      form?.reset();
     } else {
-      props.onEmitNewXpCard();
-      setValidated(false);
+      setIsFormValidated(true)
     }
-  };
+  }
 
   return (
-    <Form noValidate validated={validated} onSubmit={onButtonClick}>
+    <Form noValidate validated={isFormValidated} ref={formRef}>
       <Row>
         <FormGroup as={Col} md={"2"}>
           <Form.Label>Initial XP Points</Form.Label>
-          <Form.Control type="number" min={1} required/>
+          <Form.Control
+            type="number"
+            min={1}
+            required
+            onChange={event => setInitialPoints(parseInt(event.target.value))}/>
           <Form.Control.Feedback type="invalid">
-            This field is mandatory an must be greater than zero.
-          </Form.Control.Feedback></FormGroup>
+            This field is mandatory.
+          </Form.Control.Feedback>
+        </FormGroup>
         <FormGroup as={Col} md={"8"}>
           <Form.Label>Note</Form.Label>
-          <Form.Control type="text" required/>
+          <Form.Control
+            type="text"
+            required
+            onChange={event => setNote(event.target.value)}/>
           <Form.Control.Feedback type="invalid">
             This field is mandatory.
           </Form.Control.Feedback>
         </FormGroup>
         <Col md={"2"} className="d-grid gap-2">
-          <Button type={"submit"}>New XP Card</Button>
+          <Button type={"button"} onClick={(event) => handleClick(props.onEmitNewXpCard)}>
+            New XP Card
+          </Button>
         </Col>
       </Row>
     </Form>
