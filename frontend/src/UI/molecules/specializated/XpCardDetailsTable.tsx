@@ -1,6 +1,6 @@
 import React from "react";
 import BaseTable from "../generic/BaseTable";
-import {XpCardTransactionData} from "../../../services/XpCardDetailsService";
+import {XpCardTransactionData} from "../../../types/XpCardDetailsType";
 
 type XpCardDetailsProps = {
   readonly xpCardTransactions: XpCardTransactionData[]

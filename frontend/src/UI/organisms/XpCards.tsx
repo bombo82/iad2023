@@ -3,14 +3,15 @@ import SectionCard from "../molecules/generic/SectionCard";
 import XpCardTable from "../molecules/specializated/XpCardTable";
 import {EmitXpCardForm} from "../molecules/specializated/EmitXpCardForm";
 import Stack from "react-bootstrap/Stack";
-import {fetchXpCardList, XpCardSummaryData} from "../../services/XpCardsService";
+import {fetchXpCardList} from "../../services/XpCardsService";
+import {XpCardSummaryType} from "../../types/XpCardSummaryType";
 
 type XpCardsProps = {
   readonly onXpCardSelect: (cardId: string) => void
 }
 
 export default function XpCards(props: Readonly<XpCardsProps>) {
-  const [xpCardList, setXpCardList] = useState<XpCardSummaryData[]>([]);
+  const [xpCardList, setXpCardList] = useState<XpCardSummaryType[]>([]);
 
   useEffect(() => {
     fetchXpCardList((response) => setXpCardList(response))

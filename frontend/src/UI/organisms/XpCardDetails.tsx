@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from "react";
 import SectionCard from "../molecules/generic/SectionCard";
 import XpCardDetailsTable from "../molecules/specializated/XpCardDetailsTable";
-import {fetchXpCardDetails, XpCardDetailsData} from "../../services/XpCardDetailsService";
+import {fetchXpCardDetails} from "../../services/XpCardDetailsService";
 import Stack from "react-bootstrap/Stack";
 import {XpCardTransactionForm} from "../molecules/specializated/XpCardTransactionForm";
+import {XpCardDetailsType} from "../../types/XpCardDetailsType";
 
 type XpCardDetailsProps = {
   readonly selectedXpCard?: string
 }
 
 export default function XpCardDetails(props: Readonly<XpCardDetailsProps>) {
-  const [xpCardDetails, setXpCardDetails] = useState<XpCardDetailsData>();
+  const [xpCardDetails, setXpCardDetails] = useState<XpCardDetailsType>();
 
   useEffect(() => {
     if (props.selectedXpCard) {

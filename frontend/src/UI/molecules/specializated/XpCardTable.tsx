@@ -1,9 +1,9 @@
 import React from "react";
 import BaseTable from "../generic/BaseTable";
-import {XpCardSummaryData} from "../../../services/XpCardsService";
+import {XpCardSummaryType} from "../../../types/XpCardSummaryType";
 
 type XpCardTableProps = {
-  readonly xpCards: XpCardSummaryData[]
+  readonly xpCards: XpCardSummaryType[]
   readonly onXpCardSelect: (cardId: string) => void
 }
 
