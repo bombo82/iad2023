@@ -13,7 +13,7 @@ People earn XP points respecting the practices:
 * Small Releases
 * Metaphor
 * Simple Design
-* Testing
+* TDD
 * Refactoring
 * Pair Programming
 * Collective Ownership
