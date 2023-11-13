@@ -8,6 +8,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.UUID;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -28,9 +29,16 @@ public class XpCardAcceptanceUtils {
         return mapper.readValue(mvcResult.getResponse().getContentAsString(), XpCardFullResponse.class);
     }
 
-    public void earnPoints(UUID cardId, Integer points, String reason) throws Exception {
+    public XpCardFullResponse getXPCard(UUID cardId) throws Exception {
+        final MvcResult mvcResult = mvc.perform(get("/" + cardId.toString()))
+            .andReturn();
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(mvcResult.getResponse().getContentAsString(), XpCardFullResponse.class);
+    }
+
+    public void gainPoints(UUID cardId, Integer points, String reason) throws Exception {
         String requestBody = String.format("{\"points\": %d, \"reason\": \"%s\"}", points, reason);
-        mvc.perform(post("/" + cardId + "/redeemPoints")
+        mvc.perform(post("/" + cardId + "/addPoints")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isOk());
