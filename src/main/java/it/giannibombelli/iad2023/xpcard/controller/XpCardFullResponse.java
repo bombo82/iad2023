@@ -47,10 +47,14 @@ public class XpCardFullResponse {
         return xpCardTransactions;
     }
 
-    public class XpCardTransactionResponse {
-        private final int points;
-        private final String reason;
-        private final Date date;
+    public static class XpCardTransactionResponse {
+        private int points;
+        private String reason;
+        private Date date;
+
+        public XpCardTransactionResponse() {
+
+        }
 
         public XpCardTransactionResponse(XpCardTransaction xpCardTransaction) {
             points = xpCardTransaction.getPoints();
@@ -69,5 +73,6 @@ public class XpCardFullResponse {
         public Date getDate() {
             return date;
         }
+
     }
 }
