@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -24,6 +25,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class XpCardAcceptanceTest {
     @Autowired
     private MockMvc mvc;
+
+    @Test
+    void customerAcceptanceTest() throws Exception {
+        XpCardAcceptanceUtils utils = new XpCardAcceptanceUtils(mvc);
+        XpCardFullResponse card = utils.createXPCard(500, "card partecipante allo IAD");
+        utils.gainPoints(card.getCardId(), 500, "customer test");
+        utils.redeem(card.getCardId(), 800, "corso TDD con Kent Beck");
+        utils.redeem(card.getCardId(), 600, "DDD distilled");
+        XpCardFullResponse updatedCard = utils.getXPCard(card.getCardId());
+        assertEquals(3, updatedCard.getXpCardTransactions().size());
+    }
 
     @Test
     void emit() throws Exception {
