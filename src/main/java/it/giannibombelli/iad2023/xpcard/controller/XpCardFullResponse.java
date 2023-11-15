@@ -28,7 +28,14 @@ public class XpCardFullResponse {
         cardId = xpCard.getCardId();
         currentPoints = xpCard.getCurrentPoints();
         note = xpCard.getNote();
-        this.xpCardTransactions = xpCardTransactions.stream().map(XpCardTransactionResponse::new).toList();
+        this.xpCardTransactions = xpCardTransactions.stream().map(xpCardTransaction -> {
+            XpCardTransactionResponse responseItem = new XpCardTransactionResponse();
+            responseItem.setPoints(xpCardTransaction.getPoints());
+            responseItem.setReason(xpCardTransaction.getReason());
+            responseItem.setDate(xpCardTransaction.getDate());
+
+            return responseItem;
+        }).toList();
     }
 
     public UUID getCardId() {
@@ -53,25 +60,31 @@ public class XpCardFullResponse {
         private Date date;
 
         public XpCardTransactionResponse() {
-
-        }
-
-        public XpCardTransactionResponse(XpCardTransaction xpCardTransaction) {
-            points = xpCardTransaction.getPoints();
-            reason = xpCardTransaction.getReason();
-            date = xpCardTransaction.getDate();
+            super();
         }
 
         public int getPoints() {
             return points;
         }
 
+        public void setPoints(int points) {
+            this.points = points;
+        }
+
         public String getReason() {
             return reason;
         }
 
+        public void setReason(String reason) {
+            this.reason = reason;
+        }
+
         public Date getDate() {
             return date;
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
         }
 
     }
