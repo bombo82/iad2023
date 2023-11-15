@@ -1,0 +1,16 @@
+@import 'bootstrap';
+
+.details-container {
+    overflow: auto;
+
+    .giftcard {
+        float: left;
+        margin-right: 2rem;
+        width: 500px;
+    }
+
+    .cardTransaction {
+        float: left;
+        width: calc(100% - 2rem - 500px);
+    }
+}

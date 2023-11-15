@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Header from "../UI/organisms/header/Header";
 import XpCardList from "../UI/organisms/XpCards";
-import XpCardDetails from "../UI/organisms/XpCardDetails";
+import XpCardDetails from "../UI/organisms/xpCardDetails/XpCardDetails";
 import Stack from "react-bootstrap/Stack";
 
 export default function Home() {

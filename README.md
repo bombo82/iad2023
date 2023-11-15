@@ -81,6 +81,5 @@ Thanks to the guys at XPUG Bergamo for their precious feedback on these project 
 ## TODO
 - aggiungere al README come avviare il frontend @manu
 - copertina slide @gianni
-- controllare e trovare modo di fare 100% @gianni
 - mettere link al repo nelle slide
-- rendere pubblico repo
+- rendere pubblico repo @gianni

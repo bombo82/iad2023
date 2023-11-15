@@ -1,0 +1,47 @@
+@import '~bootstrap/scss/bootstrap';
+
+$footer-height: 5rem;
+
+.giftcard {
+    height: 300px;
+    width: 500px;
+    overflow: hidden;
+    border-radius: 1.5rem/2rem;
+    box-shadow: 8px 10px 16px rgba(0,0,0,0.1);
+    transform: translateZ(0);
+}
+
+.giftcard-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: calc(100% - #{$footer-height});
+    width: 100%;
+    background: $teal-800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: $pink-400;
+        text-align: center;
+    }
+}
+
+.giftcard-footer {
+    bottom: 0;
+    //background: $green-600;
+    background: $purple-500;
+    height: $footer-height;
+    left: 0;
+    position: absolute;
+    transform: translateZ(0);
+    width: 100%;
+
+    h1, h2, h3, h4, h5, h6 {
+        //color: $purple-300;
+        color: $teal-300;
+        height: 100%;
+        padding: 1rem;
+    }
+}
