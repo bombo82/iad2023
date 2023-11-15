@@ -23,7 +23,7 @@ export default function XpCardDetails(props: Readonly<XpCardDetailsProps>) {
   }, [props.selectedXpCard]);
 
   return (
-    <SectionCard title="XP Card Details">
+    <SectionCard title={`XP Card Details: ${xpCardDetails?.cardId} - ${xpCardDetails?.note}`}>
       <Stack gap={4}>
         <XpCardTransactionForm enabled={!props.selectedXpCard}
                                onGainPoints={(data) => gainPoints(props.selectedXpCard!, data, () => fetchXpCardDetails(props.selectedXpCard!, (response) => setXpCardDetails(response)))}
