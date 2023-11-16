@@ -63,6 +63,12 @@ For application:
 ```bash
 $ mvn spring-boot:run
 ```
+For installing and running front-end:
+```bash
+$ cd frontend
+$ npm install
+$ npm start
+```
 
 ## Run tests for coverage
 Code coverage is a software metric used to measure how many lines of our code are executed during automated tests.
