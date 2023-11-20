@@ -3,6 +3,7 @@ package it.giannibombelli.iad2023.xpcard.acceptance;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.giannibombelli.iad2023.xpcard.XpCardApplication;
 import it.giannibombelli.iad2023.xpcard.controller.XpCardFullResponse;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,6 +25,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class XpCardAcceptanceTest {
     @Autowired
     private MockMvc mvc;
+
+    @Test
+    void customerAcceptanceTest() throws Exception {
+        XpCardAcceptanceUtils utils = new XpCardAcceptanceUtils(mvc);
+        XpCardFullResponse card = utils.createXPCard(500, "Card per partecipanti IAD");
+        utils.gainPoints(card.getCardId(), 500, "customer test");
+        utils.redeem(card.getCardId(), 500, "WWLC autografo");
+        utils.redeem(card.getCardId(), 600, "Clean Code autografato");
+
+        XpCardFullResponse actualCard = utils.getXPCard(card.getCardId());
+        Assertions.assertEquals(3, actualCard.getXpCardTransactions().size());
+    }
 
     @Test
     void emit() throws Exception {

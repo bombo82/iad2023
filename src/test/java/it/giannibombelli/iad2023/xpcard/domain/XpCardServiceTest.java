@@ -71,6 +71,7 @@ class XpCardServiceTest {
 
         service.gainPoints(cardId, 500, "Gains 500 XP points");
 
+        verify(xpCardRepository, times(1)).save(any(XpCard.class));
         verify(xpCardTransactionRepository, times(1)).save(any(XpCardTransaction.class));
     }
 
@@ -81,6 +82,7 @@ class XpCardServiceTest {
 
         service.redeemPoints(cardId, 400, "Spent 400 XP points to redeem eXtreme Programming explained");
 
+        verify(xpCardRepository, times(1)).save(any(XpCard.class));
         verify(xpCardTransactionRepository, times(1)).save(any(XpCardTransaction.class));
     }
 
